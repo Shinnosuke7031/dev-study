@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useCallback, useEffect, useState, VFC } from "react";
+import { useKey } from "rooks";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App: VFC = () => {
+  const [count, setCount] = useState(0);
+  const handleKeyDownEnter = (event: KeyboardEvent) => {
+    if (event.key === "Enter") {
+      setCount(count + 1);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDownEnter);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDownEnter);
+    };
+  }, [count]);
+
+  return <Fragment>Count : {count}</Fragment>;
+};
 
 export default App;
