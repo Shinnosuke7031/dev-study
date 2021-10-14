@@ -1,5 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useState, VFC } from "react";
-import { useKey } from "rooks";
+import React, { Fragment, useEffect, useState, VFC } from "react";
 
 const App: VFC = () => {
   const [count, setCount] = useState(0);
